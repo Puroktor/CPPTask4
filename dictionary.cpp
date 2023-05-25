@@ -63,12 +63,18 @@ Dictionary* Dictionary::readFromFile(const QString *filename, bool *ok)
         while (!stream.atEnd())
         {
             QStringList record = stream.readLine().split(SEPARATOR);
+            if (record.size() != 2)
+            {
+                *ok = false;
+                qCritical() << "Invalid dictionary record size. Expected 2, got " << record.size();
+                break;
+            }
             bool converted;
             int count = record[1].toInt(&converted);
             if (!converted)
             {
                 *ok = false;
-                qWarning() << "Dictionary file had wrong format" << *filename;
+                qCritical() << "Could not convert wird count into int " << record[1];
                 break;
             }
             (*map)[record[0]] = count;
@@ -83,8 +89,6 @@ Dictionary* Dictionary::readFromFile(const QString *filename, bool *ok)
     }
 
     if (!ok)
-    {
         map->clear();
-    }
     return new Dictionary(map);
 }

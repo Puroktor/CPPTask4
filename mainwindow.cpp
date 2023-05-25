@@ -58,9 +58,7 @@ void MainWindow::on_open_file_action_triggered()
 {
     QString filename = QFileDialog::getOpenFileName(this, "Open File", ".", "Text Files(*.txt)");
     if (filename.isNull())
-    {
         return;
-    }
 
     openFileWindow = new OpenFileWindow(&filename, dictionary, this);
     openFileWindow->show();
@@ -71,9 +69,7 @@ void MainWindow::on_save_dict_action_triggered()
 {
     QString filename = QFileDialog::getSaveFileName(this, "Save Dictionary", ".", FileUtils::DICT_FILE_FILTER);
     if (filename.isNull())
-    {
         return;
-    }
 
     bool status;
     Dictionary::writeToFile(&filename, dictionary, &status);
@@ -88,9 +84,7 @@ void MainWindow::on_open_dict_action_triggered()
 {
      QString filename = QFileDialog::getOpenFileName(this, "Open Dictionary", ".", FileUtils::DICT_FILE_FILTER);
      if (filename.isNull())
-     {
          return;
-     }
 
      bool status;
      Dictionary* parsedDict = Dictionary::readFromFile(&filename, &status);

@@ -22,7 +22,7 @@ QString FileUtils::readFile(const QString *filename, bool *ok)
         *ok = true;
     } else {
         *ok = false;
-        qInfo() << "Could not open file " << *filename;
+        qWarning() << "Could not open file " << *filename;
     }
     return text;
 }
