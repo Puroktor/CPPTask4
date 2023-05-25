@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>img/open_dict.png</file>
+        <file>img/open_document.png</file>
+        <file>img/save_dict.png</file>
+    </qresource>
+</RCC>
